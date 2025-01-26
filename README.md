@@ -5,14 +5,14 @@
 Ceci est la "V2" du projet Linky_Tempo:
 L'objectif est de pouvoir accéder au status du délestage ainsi qu'à la possibilité d'annuler ce délestage depuis Internet.
 
-## Le Contexte
+## Le contexte
 
 Le logement est en tout électrique
 Le contrat EDF est en offre tempo
 En général, hors télétravail, l'appartement est vide dans la journée
 L'environnement informatique est orienté Apple (mac, iPhone, appleTV)
 
-## Rappel du Besoin
+## Rappel du besoin
 
 Le besoin est de délester le chauffage (le basculer en hors-gel) automatiquement:
 - en heure pleine jour rouge (HPJR) et jour blanc (HPJW)
@@ -21,7 +21,7 @@ Le besoin est de délester le chauffage (le basculer en hors-gel) automatiquemen
 A la demande, il faut pouvoir annuler le délestage en HPJW (mais pas en HPJR)
 Cette annulation du délestage doit pouvoir se faire même si on se trouve hors de la maison
  
-## L'Approche Suivie
+## L'approche suivie
 
 Pra rapport au projet Linky_Tempo, l'approche suivie sera de:
 - remplacer l'Arduino par un ESP32
@@ -44,6 +44,11 @@ Concernant la commande (TargetHeatingCoolingState) on a:
 Le circuit a également un bouton poussoir permettant de basculer entre le mode automatique et le mode annulation du délestage
 
 Note: "Heater-Cooler" aurait peut-être pu être utilisé à la place de "Thermostat". Mais cette possibilité n'a pas été étudiée.
+
+## Partie électronique
+Le mode "Thermostat" de HomeKit permettant d'afficher une température, une sonde BME280 a été rajoutée au projet.
+Le circuit a été monté sur une plaque à trous avec bandes cuivrées. Dans KiCad, la couche "bleue" (B\.cu) corresponds à la face cuivrée alors que la couche "rouge" (F\.Cu) corresponds à la face supérieure sur laquelle on a installé quelques jumpers.
+La disposition des composants est très aérée afin de limiter les court-circuits.
 
 ## Configuration
 
