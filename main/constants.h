@@ -53,6 +53,8 @@ const char *PERIODE_DELESTAGE_R = "HPJR";
 // pour éviter des alternances de délestages trop fréquents
 // 300000 = 5mn
 // 180000 = 3mn
+// Cette durée ne concerne que le délestage provenant d'une
+// surconsommation
 // ---------------------------------------------------------------- 
 const unsigned long TEMPS_DELESTAGE  =  240000; // 4mn
 

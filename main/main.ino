@@ -2,10 +2,12 @@
 // ----------------------------------------------------------------
 // Issues:
 //
+// TODO: au démarrage (par exemple, après une coupure de courant), il faut être en mode délestage
 // TODO: led qui confirme le fonctionnement normal (homespan + bme280) ?
 // TODO: fonctionnement en cas de 'plantage' de la partie HomeKit ?
 // TODO: juste après l'upload du sketch, passer en chauffage ne se reset pas bien
 //
+// DONE: flash rapide de la led jaune lorsqu'une trame Linky est reçue
 // DONE: activer le hotspot wifi immédiatement après un reset
 // DONE: la tempo de délestage ne doit s'appliquer qu'à la surconsommation
 // DONE: en délestage interdit, la température reste parfois à 21°C
@@ -33,13 +35,17 @@ _Mode_e mode_tic;
 TInfo tinfo;
 
 // L'utilisateur a-t-il demandé une annulation du délestage ?
-bool annulDelestageHPJW;
+// Cette demande sera refusée en HPJR
+// (elle est dédiée aux HPJW)
+bool annulDelestage;
 
 // depuis quand est-on en délestage pour cause de surconsommation ?
 // le but est de ne pas annuler trop vite (pour tenir compte de l'apect
 // intermittent de la surconsommation dans le cas d'un appareil
 // électroménager)
-uint32_t startDelestage;
+uint32_t startDelestageSurConso;
+// on ne s'intéressera à cette date que si on observe une surconsommation
+bool delestageSurConso;
 
 
 // ----------------------------------------------------------------
@@ -68,6 +74,15 @@ DEV_Thermostat *thermostat;
 void setup() {
   Serial.begin(9600);
 
+  // ESP Pins -----------------------------------------------------
+  pinMode(PIN_SETUP, INPUT_PULLUP);  // bouton poussoir pour entrer en mode setup
+  pinMode(PIN_PILOTE, OUTPUT);       // commande du fil pilote
+  pinMode(LED_ANNUL, OUTPUT);        // la LED jaune qui indique qu'on a annulé le délestage
+  pinMode(PIN_LED, OUTPUT);          // builtin led, utilisée par homeSpan
+
+  digitalWrite(PIN_PILOTE, HIGH);
+  Serial.println("Setup - Fil pilote = HIGH = chauffage coupé");
+
   // Linky --------------------------------------------------------
   // init interface série utilisée pour récupérer la TIC
   // Note: la méthode force le mode historique car:
@@ -84,6 +99,7 @@ void setup() {
     digitalWrite(PIN_PILOTE, HIGH); // TODO: LOW or HIGH
     // Et la LED rouge va flasher indéfiniment pour montrer le problème
     //LED_Flashx2Forever();
+    // TODO: stop forever ?
   }
   //LED_HIST_ON();
 
@@ -95,7 +111,9 @@ void setup() {
   tinfo.attachUpdatedFrame(UpdatedFrameCallback);
   tinfo.attachData(AttachDataCallback);
 
-  annulDelestageHPJW  = false;
+  annulDelestage  = false;
+  startDelestageSurConso = 0;
+  delestageSurConso = false;
 
   // BME280, with default settings --------------------------------
   unsigned status = bme280.begin(0x76);
@@ -109,24 +127,19 @@ void setup() {
     bHasBME280 = false;
   }
 
-  // Commandes ----------------------------------------------------
-  pinMode(PIN_SETUP, INPUT_PULLUP);  // bouton poussoir pour entrer en mode setup
-  pinMode(LED_ANNUL, OUTPUT);        // la LED jaune qui indique qu'on a annulé le délestage
-  pinMode(PIN_LED, OUTPUT);          // builtin led, utilisée par homeSpan
+  // HomeSpan -----------------------------------------------------
 
   // Bouton poussoir pour annuler le délestage automatique
   // Premier appui: on annule le délestage (chauffage selon la programmation des radiateurs)
-  // Second appui: on reviens en mode automatique (délestage)
+  // Second appui: on revient en mode automatique (délestage)
   pinMode(PIN_ANNUL_DELEST, INPUT_PULLUP);
 
-  // HomeSpan -----------------------------------------------------
-
-  // Controle du device: un bouton et une LED
-  homeSpan.setStatusPin(PIN_LED);   // led
+  // Contrôle du device: un bouton et une LED
+  homeSpan.setStatusPin(PIN_LED);    // led
   homeSpan.setControlPin(PIN_SETUP); // bouton
-  //homeSpan.setLogLevel(2);
+  homeSpan.setLogLevel(1);
   // Le WiFi interne utilisé lors de la configuration du device
-  homeSpan.enableAutoStartAP(); // le mode point d'accès wifi sera actif automatiquement après un reset
+  homeSpan.enableAutoStartAP();      // le mode point d'accès wifi sera actif automatiquement après un reset
   homeSpan.setApSSID(APSSID);
   homeSpan.setApPassword(APPASSWORD);
   // TEMPORAIRE:
@@ -149,53 +162,86 @@ void setup() {
 // ----------------------------------------------------------------
 void loop() {
   // réception d'un caractère de la TIC
-  // on laisse tinfo essayer de décoder l'ensemble
+  // on laisse tinfo essayer de décoder ce caractère
   if (Serial2.available()) {
     char c = Serial2.read();
     //Serial.print(c);
     tinfo.process(c);
   }
 
-  // Délestage
+  // Sera utilisé pour savoir si on peut annuler le délestage
+  // (utilisé uniquement en cas de surconsommation)
   uint32_t currentTime = millis();
 
   // l'utilisateur a demandé d'annuler le délestage ?
-  annulDelestageHPJW = thermostat->heatEnforced();
-  digitalWrite(LED_ANNUL, annulDelestageHPJW ? HIGH : LOW);
+  // on mémorise cette demande et on verra ci-dessous si on peut la satisfaire
+  bool oldAnnulDelestage = annulDelestage; // utilisé pour savoir si on a changé durant cette loop
+  annulDelestage = thermostat->heatEnforced();
+  digitalWrite(LED_ANNUL, annulDelestage ? HIGH : LOW);
 
-  // On ne peut annuler le délestage qu'en HPJW
-  // On s'assure donc que cette annulation ne reste pas active trop longtemps
-  if (annulDelestageHPJW && !delestage_HPJW) {
+  // Surconsommation ?
+  // délestage forcé
+  if (lkSurConsommation) {
+    // Comme on veut être sûr de délester, on ne vérifie pas si on délestait déjà
+    digitalWrite(PIN_PILOTE, HIGH);
+    annulDelestage = false;
     thermostat->enforceAuto();
-    annulDelestageHPJW = false;
-    // La LED_ANNUL sera éteinte au prochain passage dans la loop()
-  }
-
-  // on indique au fil pilote si on déleste ou pas
-  if (delestage_CONSO) {
-    // On doit délester pour cause de surconsommation
-    // Comme on ne sait pas si on était déjà en mode délestage, on définit les pins de sortie en conséquence
-    digitalWrite(PIN_PILOTE, HIGH);
     // En on repousse la fin du délestage
-    startDelestage = currentTime;
-
-  } else if (delestage_HPJR) {
-    // On doit délester pour cause de jour rouge
-    // Comme on ne sait pas si on était déjà en mode délestage, on définit les pins de sortie en conséquence
-    digitalWrite(PIN_PILOTE, HIGH);
-
-  } else if (delestage_HPJW && !annulDelestageHPJW) {
-    // On doit délester pour cause de jour blanc
-    // Comme on ne sait pas si on était déjà en mode délestage, on définit les pins de sortie en conséquence
-    digitalWrite(PIN_PILOTE, HIGH);
-
-  } else if (currentTime - startDelestage > TEMPS_DELESTAGE) {
-    // On n'a plus besoin de délester
-    // et ceci, depuis assez longtemps (TEMPS_DELESTAGE)
-    // Ce temps d'attente est pour éviter de basculer trop souvent
-    // Par exemple, lorsque le four ou une plaque de cuisson est en maintien de température
-    // On peut enfin annuler le délestage
-    // TODO: LED_Eteinte();
-    digitalWrite(PIN_PILOTE, LOW);
+    startDelestageSurConso = currentTime;
+    delestageSurConso = true;
+    return;
   }
+
+  // Fin de surconsommation mais c'est trop tôt pour annuler le délestage
+  // On reste donc en délestage
+  if (delestageSurConso && (currentTime - startDelestageSurConso < TEMPS_DELESTAGE)) {
+    // Comme on veut être sûr de délester, on ne vérifie pas si on délestait déjà
+    digitalWrite(PIN_PILOTE, HIGH);
+    annulDelestage = false;
+    thermostat->enforceAuto();
+    return;
+  }
+
+  // Pas de surconsommation actuelle ni récente
+  delestageSurConso = false;
+
+  // HPJR ?
+  // délestage forcé
+  if (lkPeriodeTempo == HPJR) {
+    // On doit délester car on est en heure pleine de jour rouge
+    digitalWrite(PIN_PILOTE, HIGH);
+    annulDelestage = false;
+    thermostat->enforceAuto();
+    if (annulDelestage != oldAnnulDelestage) {
+      Serial.println("Fil pilote = HIGH = chauffage coupé");
+    }
+    return;
+  }
+
+  // HPJW ?
+  // on accepte un éventuel délestage
+  if (lkPeriodeTempo == HPJW) {
+    if (annulDelestage) {
+      digitalWrite(PIN_PILOTE, LOW);
+      if (annulDelestage != oldAnnulDelestage) {
+        Serial.println("Fil pilote = LOW = chauffage actif");
+      }
+    } else {
+      digitalWrite(PIN_PILOTE, HIGH);
+      if (annulDelestage != oldAnnulDelestage) {
+        Serial.println("Fil pilote = HIGH = chauffage coupé");
+      }
+    }
+    return;
+  }
+
+  // OTHER ?
+  // Pas de délestage dans les autres modes
+  digitalWrite(PIN_PILOTE, LOW);
+  annulDelestage = false;
+  thermostat->enforceAuto();
+  if (annulDelestage != oldAnnulDelestage) {
+    Serial.println("Fil pilote = LOW = chauffage actif");
+  }
+
 }

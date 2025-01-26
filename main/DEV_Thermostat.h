@@ -14,7 +14,7 @@ struct DEV_Thermostat: Service::Thermostat {
     bme = bme280;
     current = new Characteristic::CurrentHeatingCoolingState(Characteristic::CurrentHeatingCoolingState::IDLE); // PR+EV    0(default)=IDLE, 1=HEATING, 2=COOLING
     current->setValidValues(2, Characteristic::CurrentHeatingCoolingState::IDLE, Characteristic::CurrentHeatingCoolingState::HEATING);
-    target  = new Characteristic::TargetHeatingCoolingState(Characteristic::TargetHeatingCoolingState::AUTO);  // PW+PR+EV 0(default)=OFF, 1=HEAT, 2=COOL, 3=AUTO
+    target  = new Characteristic::TargetHeatingCoolingState(Characteristic::TargetHeatingCoolingState::AUTO);   // PW+PR+EV 0(default)=OFF, 1=HEAT, 2=COOL, 3=AUTO
     target->setValidValues(2, Characteristic::TargetHeatingCoolingState::HEAT, Characteristic::TargetHeatingCoolingState::AUTO);                             // valeurs supportées: HEAT & AUTO
     cTemp = new Characteristic::CurrentTemperature(0);           // PR+EV    default = 0°C
     tTemp = new Characteristic::TargetTemperature(11);           // PW+PR+EV default = 16°C
@@ -26,7 +26,7 @@ struct DEV_Thermostat: Service::Thermostat {
 
   // Certaines caractéristiques ne peuvent pas être modifiées dans la méthode update()
   // On les capture donc ici et elles seront updatées dans la méthode loop()
-  // TODO: trouver une façon plus élégante de traiter ce point
+  // TODO: trouver une façon plus élégante de traiter ce point ?
   boolean bNeedToUpdateTarget = false;
   float newTargetTemp;
   int newTargetMode;
