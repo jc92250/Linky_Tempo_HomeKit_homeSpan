@@ -1,14 +1,29 @@
 # Linky_Tempo_HomeKit
 
-** work in progress **  
-Status actuel: démontrateur technique de la partie HomeKit sur platine d'essai
+## Introduction
 
-## Présentation
-
-Ceci est la "V2" du projet Linky_Tempo.  
+Ceci est la "V2" du projet Linky_Tempo:
 L'objectif est de pouvoir accéder au status du délestage ainsi qu'à la possibilité d'annuler ce délestage depuis Internet.
 
-L'approche suivie sera de:
+## Le Contexte
+
+Le logement est en tout électrique
+Le contrat EDF est en offre tempo
+En général, hors télétravail, l'appartement est vide dans la journée
+L'environnement informatique est orienté Apple (mac, iPhone, appleTV)
+
+## Rappel du Besoin
+
+Le besoin est de délester le chauffage (le basculer en hors-gel) automatiquement:
+- en heure pleine jour rouge (HPJR) et jour blanc (HPJW)
+- en cas de surconsommation
+
+A la demande, il faut pouvoir annuler le délestage en HPJW (mais pas en HPJR)
+Cette annulation du délestage doit pouvoir se faire même si on se trouve hors de la maison
+ 
+## L'Approche Suivie
+
+Pra rapport au projet Linky_Tempo, l'approche suivie sera de:
 - remplacer l'Arduino par un ESP32
 - installer HomeSpan sur l'ESP32 pour qu'il soit vu comme un device HomeKit
 - le configurer comme un "Thermostat"
@@ -35,13 +50,12 @@ Note: "Heater-Cooler" aurait peut-être pu être utilisé à la place de "Thermo
 Factory reset:  
 Faire un appui long (> 10 secondes) sur le bouton reset. Au bout de 3 secondes, la led interne va clignoter rapidement, continuer l'appui sur le bouton jusqu'à l'extinction de la led.
 
-A ce moment, le device est configuré comme un point d'accès wifi sur lequel on peut
-se connecter avec un ordinateur ou un smartphone. Voici les paramètres du point d'accès:
+A ce moment, le device est configuré comme un point d'accès wifi sur lequel on peut se connecter avec un ordinateur ou un smartphone. Voici les paramètres du point d'accès:
 - nom du wifi: JCDELESTAGE
 - mot de passe: 123456789
 
 Via ce point d'accès, il est possible de:
-- définit le réseau wifi sur lequel le device doit se connecter
+- définir le réseau wifi sur lequel le device doit se connecter
 - définir le setup-code homeKit du device
 
 Une fois ces informations saisies, le device va redémarrer et ce connecteur à ce
