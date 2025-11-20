@@ -68,10 +68,13 @@ réseau wifi. Une fois ceci effectué, la led bleue va flasher 2 fois toutes les
 
 ## Les LEDs
 
-LED rouge: toujours allumée, indique que l'ESP32 est alimenté  
+LED rouge:
+- toujours allumée, indique que l'ESP32 est alimenté
+
 LED bleue:  
-- allumée fixe: le device est en fonctionnement et pairé dans Maison  
-- allumée et clignotante (2 flashs brefs toutes les 3 secondes): le device n'est pas pairé dans Maison. 
+- allumée fixe: le device est en fonctionnement et pairé dans Maison
+- allumée et clignotante (2 flashs brefs toutes les 3 secondes): le device n'est pas pairé dans Maison.
+
 LED jaune:
 - flashe à chaque fois qu'une trame Linky valide a été reçue
 - reste allumée lorsque le délestage est annulé
