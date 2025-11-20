@@ -1,7 +1,7 @@
 (kicad_pcb
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(general
 		(thickness 1.6)
 		(legacy_teardrops no)
@@ -9,41 +9,42 @@
 	(paper "A4")
 	(layers
 		(0 "F.Cu" signal)
-		(31 "B.Cu" signal)
-		(32 "B.Adhes" user "B.Adhesive")
-		(33 "F.Adhes" user "F.Adhesive")
-		(34 "B.Paste" user)
-		(35 "F.Paste" user)
-		(36 "B.SilkS" user "B.Silkscreen")
-		(37 "F.SilkS" user "F.Silkscreen")
-		(38 "B.Mask" user)
-		(39 "F.Mask" user)
-		(40 "Dwgs.User" user "User.Drawings")
-		(41 "Cmts.User" user "User.Comments")
-		(42 "Eco1.User" user "User.Eco1")
-		(43 "Eco2.User" user "User.Eco2")
-		(44 "Edge.Cuts" user)
-		(45 "Margin" user)
-		(46 "B.CrtYd" user "B.Courtyard")
-		(47 "F.CrtYd" user "F.Courtyard")
-		(48 "B.Fab" user)
-		(49 "F.Fab" user)
-		(50 "User.1" user)
-		(51 "User.2" user)
-		(52 "User.3" user)
-		(53 "User.4" user)
-		(54 "User.5" user)
-		(55 "User.6" user)
-		(56 "User.7" user)
-		(57 "User.8" user)
-		(58 "User.9" user)
+		(2 "B.Cu" signal)
+		(9 "F.Adhes" user "F.Adhesive")
+		(11 "B.Adhes" user "B.Adhesive")
+		(13 "F.Paste" user)
+		(15 "B.Paste" user)
+		(5 "F.SilkS" user "F.Silkscreen")
+		(7 "B.SilkS" user "B.Silkscreen")
+		(1 "F.Mask" user)
+		(3 "B.Mask" user)
+		(17 "Dwgs.User" user "User.Drawings")
+		(19 "Cmts.User" user "User.Comments")
+		(21 "Eco1.User" user "User.Eco1")
+		(23 "Eco2.User" user "User.Eco2")
+		(25 "Edge.Cuts" user)
+		(27 "Margin" user)
+		(31 "F.CrtYd" user "F.Courtyard")
+		(29 "B.CrtYd" user "B.Courtyard")
+		(35 "F.Fab" user)
+		(33 "B.Fab" user)
+		(39 "User.1" user)
+		(41 "User.2" user)
+		(43 "User.3" user)
+		(45 "User.4" user)
+		(47 "User.5" user)
+		(49 "User.6" user)
+		(51 "User.7" user)
+		(53 "User.8" user)
+		(55 "User.9" user)
 	)
 	(setup
 		(pad_to_mask_clearance 0)
 		(allow_soldermask_bridges_in_footprints no)
+		(tenting front back)
 		(pcbplotparams
-			(layerselection 0x00010fc_ffffffff)
-			(plot_on_all_layers_selection 0x0000000_00000000)
+			(layerselection 0x00000000_00000000_55555555_5755f5ff)
+			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
 			(usegerberattributes yes)
@@ -53,7 +54,6 @@
 			(dashed_line_gap_ratio 3.000000)
 			(svgprecision 4)
 			(plotframeref no)
-			(viasonmask no)
 			(mode 1)
 			(useauxorigin no)
 			(hpglpennumber 1)
@@ -61,16 +61,19 @@
 			(hpglpendiameter 15.000000)
 			(pdf_front_fp_property_popups yes)
 			(pdf_back_fp_property_popups yes)
+			(pdf_metadata yes)
+			(pdf_single_document no)
 			(dxfpolygonmode yes)
 			(dxfimperialunits yes)
 			(dxfusepcbnewfont yes)
 			(psnegative no)
 			(psa4output no)
-			(plotreference yes)
-			(plotvalue yes)
-			(plotfptext yes)
-			(plotinvisibletext no)
+			(plot_black_and_white yes)
 			(sketchpadsonfab no)
+			(plotpadnumbers no)
+			(hidednponfab no)
+			(sketchdnponfab yes)
+			(crossoutdnponfab yes)
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
@@ -150,19 +153,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "cb3112b0-3e10-4f8e-8853-a3d92060a2a7")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -370,6 +360,7 @@
 			(pintype "passive")
 			(uuid "a4de931c-3e30-448b-b6e1-cb3340152408")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -406,19 +397,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "091a6dc3-de18-4010-936c-ac380a010ea5")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -626,6 +604,7 @@
 			(pintype "passive")
 			(uuid "579e7286-cad3-44ae-9dbe-7f9827986934")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -662,19 +641,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9cf88e51-c33e-4dfa-a6eb-aff5a47af2d7")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -727,7 +693,7 @@
 				(width 0.12)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.SilkS")
 			(uuid "8c66bcc5-33e6-470c-b1f2-06bfccf6de99")
 		)
@@ -788,7 +754,7 @@
 				(width 0.1)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Fab")
 			(uuid "da52405e-76db-4071-aa3f-937d8d4b7738")
 		)
@@ -823,6 +789,7 @@
 			(pintype "passive")
 			(uuid "4133e56b-2adc-4077-8b6f-1ee6a0548ead")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -859,19 +826,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1df6b7ec-2e6a-49b5-b5b7-630bd0c7aea5")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -1079,6 +1033,7 @@
 			(pintype "passive")
 			(uuid "5d14c65a-2890-4bae-b347-6d51af9a91a4")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -1115,19 +1070,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-6_W7.62mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "69249156-28c5-45c1-887b-f68ce0fb21b6")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -1387,6 +1329,7 @@
 			(pintype "passive")
 			(uuid "e85c90d2-bb0c-44a1-bce9-d9a232841ee1")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Package_DIP.3dshapes/DIP-6_W7.62mm.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -1406,7 +1349,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R7"
-			(at 5.08 -2.37 -90)
+			(at 5.08 -2.37 270)
 			(layer "F.SilkS")
 			(uuid "94f1ed5c-2f02-4933-81db-e531fe6305e3")
 			(effects
@@ -1417,7 +1360,7 @@
 			)
 		)
 		(property "Value" "18kΩ"
-			(at 5.08 2.37 -90)
+			(at 5.08 2.37 270)
 			(layer "F.Fab")
 			(uuid "0c6dc7ab-8fe8-4b53-b77b-6cea9fa03829")
 			(effects
@@ -1427,21 +1370,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 0 0 -90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "44f6c655-ab8d-4d2b-810e-f542bd29c225")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "Datasheet" ""
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -1454,7 +1384,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -1632,7 +1562,7 @@
 			(uuid "96a6be5b-0a67-473e-9dac-784f76838724")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 5.08 0 -90)
+			(at 5.08 0 270)
 			(layer "F.Fab")
 			(uuid "54ff4183-f8c7-41e9-af33-b3009fad8d62")
 			(effects
@@ -1662,6 +1592,7 @@
 			(pintype "passive")
 			(uuid "e26b7eea-a32c-442c-8209-6d7029eb5f1f")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -1698,19 +1629,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P15.24mm_Horizontal"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "6f796e0f-8f27-4c56-8453-410080039bf6")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -1937,6 +1855,7 @@
 			(pintype "passive")
 			(uuid "5ab8e9b5-aa5e-42c4-809d-e549ebee6fa0")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0309_L9.0mm_D3.2mm_P15.24mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -1977,21 +1896,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
-			(at 0 0 -90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e67e9941-5249-4712-b789-840b56b0856f")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "Datasheet" ""
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -2004,7 +1910,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -2038,7 +1944,7 @@
 				(width 0.12)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.SilkS")
 			(uuid "164b7bba-5f45-4a5b-9cb2-a0a49a3a8c93")
 		)
@@ -2099,7 +2005,7 @@
 				(width 0.1)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Fab")
 			(uuid "39f472e0-ea52-46e5-ab19-4e2868a7d49f")
 		)
@@ -2134,6 +2040,7 @@
 			(pintype "passive")
 			(uuid "e3fadc9c-f65a-4c63-b656-ebed6354191c")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -2174,21 +2081,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-15_P15.24mm_Horizontal"
-			(at 0 0 -90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "63ea2081-83ea-4235-85d8-867a23b44fe6")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -2201,7 +2095,7 @@
 			)
 		)
 		(property "Description" "1000V 1A General Purpose Rectifier Diode, DO-41"
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -2214,7 +2108,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -2227,7 +2121,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 0 0 -90)
+			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -2519,6 +2413,7 @@
 			(pintype "passive")
 			(uuid "2555ccb3-d4e8-4a74-a566-fbb01ed6c7c3")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-15_P15.24mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -2555,19 +2450,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e565a7c5-180d-484d-9285-fffb29a16c90")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -2794,6 +2676,7 @@
 			(pintype "passive")
 			(uuid "d66e1f6f-ea24-45a7-b1b5-dc56c714b506")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -2830,19 +2713,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b4bc0faf-4080-4081-b2cd-ff1fc680277f")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -3072,6 +2942,7 @@
 			(pintype "passive")
 			(uuid "7c3c7242-1369-443e-a853-2500c523f1ad")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x03_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -3108,19 +2979,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "81978007-4db7-4bb5-a139-0468b011f5fd")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -3347,6 +3205,7 @@
 			(pintype "passive")
 			(uuid "ecb2ba3e-58f9-442a-8704-6923a91506a2")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -3383,19 +3242,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline_Wide"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "a3c1fabd-7fca-4b12-8cf2-7a207bfe6b52")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -3601,6 +3447,7 @@
 			(pintype "passive")
 			(uuid "35327e63-d283-4707-9d08-feecf3a4a1c1")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Package_TO_SOT_THT.3dshapes/TO-92_Inline_Wide.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -3637,19 +3484,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "575d970a-7997-40e0-a335-279a4a449e2b")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -3817,7 +3651,7 @@
 				(width 0.1)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Fab")
 			(uuid "5983ba49-390a-4405-adec-0c61fc974394")
 		)
@@ -3843,6 +3677,7 @@
 			(pintype "passive")
 			(uuid "60f3e0fc-90d5-4f12-a528-cfec8025e9e2")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -3879,19 +3714,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Linky_Tempo_HomeKit_Library:SW_PUSH_5.08mm_H5mm"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1eec9c17-30d2-4970-a5b6-e49126363c7f")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -4083,7 +3905,7 @@
 				(width 0.1)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Fab")
 			(uuid "5909d4cb-b0cf-4330-ae8e-471c9ccb0741")
 		)
@@ -4142,6 +3964,7 @@
 			(pintype "passive")
 			(uuid "e6f8bd10-384a-4790-ab21-2f5b7a0d8468")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm_H5mm.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -4159,7 +3982,7 @@
 		(uuid "b88b3564-ea20-4a4a-8891-27fb02daa83e")
 		(at 130.81 86.36)
 		(property "Reference" "U1"
-			(at 0.5 -0.395187 -90)
+			(at 0.5 -0.395187 270)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "3e77bf41-1d21-4c77-9f8d-59bd8f824240")
@@ -4171,7 +3994,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at -1 -0.395187 -90)
+			(at -1 -0.395187 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "0216e976-6891-480a-9828-8d2179b2c374")
@@ -4182,20 +4005,8 @@
 				)
 			)
 		)
-		(property "Footprint" "ESP32_30pin"
-			(at 0.22754 0 -90)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "7cc9b018-97d6-43ac-bc62-3ff5c99fe44f")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "Datasheet" ""
-			(at 0.22754 0 -90)
+			(at 0.22754 0 270)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9481bf69-6337-46cc-8191-393b2b2022d5")
@@ -4207,7 +4018,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0.22754 0 -90)
+			(at 0.22754 0 270)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "80130484-6f54-4b66-ab1c-bbd437fbe50a")
@@ -4221,28 +4032,6 @@
 		(path "/8a44934a-5210-4c56-a355-d67d3e18c379")
 		(sheetname "Racine")
 		(sheetfile "Linky_Tempo_HomeKit.kicad_sch")
-		(fp_rect
-			(start -14.10246 -25.4)
-			(end 14.19754 26.1)
-			(stroke
-				(width 0.2)
-				(type default)
-			)
-			(fill none)
-			(layer "F.SilkS")
-			(uuid "af04f796-731f-4333-b9a8-c5aea56e34da")
-		)
-		(fp_rect
-			(start -3.58246 22.86)
-			(end 4.03754 27.114179)
-			(stroke
-				(width 0.1)
-				(type default)
-			)
-			(fill none)
-			(layer "F.SilkS")
-			(uuid "bd10ef84-e43c-4e60-b2ca-dae889451c49")
-		)
 		(fp_circle
 			(center -11.34246 -22.86)
 			(end -11.34246 -21.36)
@@ -4250,7 +4039,7 @@
 				(width 0.1)
 				(type default)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Mask")
 			(uuid "58fa4983-5d95-4938-91c4-092e2a6556f4")
 		)
@@ -4261,7 +4050,7 @@
 				(width 0.1)
 				(type default)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Mask")
 			(uuid "38f300e4-85d1-41f1-8cb1-23e6273dde8d")
 		)
@@ -4272,7 +4061,7 @@
 				(width 0.1)
 				(type default)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Mask")
 			(uuid "5ca22d1e-915b-4558-8203-1f0523aebae3")
 		)
@@ -4283,9 +4072,31 @@
 				(width 0.1)
 				(type default)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Mask")
 			(uuid "b84a041b-d493-4ce9-81dd-08b7fc2acf3e")
+		)
+		(fp_rect
+			(start -14.10246 -25.4)
+			(end 14.19754 26.1)
+			(stroke
+				(width 0.2)
+				(type default)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "af04f796-731f-4333-b9a8-c5aea56e34da")
+		)
+		(fp_rect
+			(start -3.58246 22.86)
+			(end 4.03754 27.114179)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "bd10ef84-e43c-4e60-b2ca-dae889451c49")
 		)
 		(fp_text user "D23"
 			(at 11 -16.5 0)
@@ -4678,7 +4489,7 @@
 			)
 		)
 		(fp_text user "${REFERENCE}"
-			(at -2.5 -0.395187 -90)
+			(at -2.5 -0.395187 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "c1d68c96-b654-4cf5-9de7-927e85f79a87")
@@ -5019,6 +4830,7 @@
 			(pintype "bidirectional+no_connect")
 			(uuid "e0dcbc2b-06fb-4495-8c34-294624acf481")
 		)
+		(embedded_fonts no)
 		(model "${KICAD_USER_3DMODELS}/ESP32-30pin.step"
 			(offset
 				(xyz 0.2 0 2.7)
@@ -5055,19 +4867,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c78b6867-67ec-4491-97c1-4a604a9f442c")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -5251,6 +5050,7 @@
 			(pintype "passive")
 			(uuid "767c68ea-27e8-4bf6-8d13-8a7c1b0a74c2")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Package_TO_SOT_THT.3dshapes/TO-92_Inline.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -5287,19 +5087,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P20.32mm_Horizontal"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "05ec4b32-0e5b-4732-b1db-63517f12a8b4")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -5526,6 +5313,7 @@
 			(pintype "passive")
 			(uuid "959d08cc-b69c-4756-b8c7-191a5fe38c20")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0309_L9.0mm_D3.2mm_P20.32mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -5562,19 +5350,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-4_W7.62mm"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "55757633-cd7c-4ecc-bf4b-5e7db6d83952")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -5812,6 +5587,7 @@
 			(pintype "passive")
 			(uuid "c6a2b483-b0d7-490e-9444-990365644424")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Package_DIP.3dshapes/DIP-4_W7.62mm.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -5848,19 +5624,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Linky_Tempo_HomeKit_Library:SW_PUSH_5.08mm_H5mm"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "3e801a8a-aae6-402b-a838-074f90a53e4c")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6052,7 +5815,7 @@
 				(width 0.1)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Fab")
 			(uuid "3951085f-575f-4ba3-84fc-06197ec03880")
 		)
@@ -6111,6 +5874,7 @@
 			(pintype "passive")
 			(uuid "b8d86abe-2616-434d-bdc3-39b1909912e3")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm_H5mm.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -6147,19 +5911,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "ac435d92-5bf7-40ef-b639-ca0611e1b19c")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6367,6 +6118,7 @@
 			(pintype "passive")
 			(uuid "d3d989bd-89af-499b-8a03-38324c5eea03")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -6404,19 +6156,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9763a517-1f90-42a2-99cb-add1ea2dcbc4")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6690,6 +6429,7 @@
 			(pintype "passive")
 			(uuid "6ee0273d-1ae0-489c-8184-351e316b23dc")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x07_P2.54mm_Vertical.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -6701,6 +6441,46 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(gr_line
+		(start 175.26 92.71)
+		(end 195.58 92.71)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Mask")
+		(uuid "aefc1d56-c67a-4103-8971-d4b9e0e818e0")
+	)
+	(gr_line
+		(start 175.26 49.53)
+		(end 175.26 76.2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Mask")
+		(uuid "b4893d0b-457b-4f57-9ed0-1c78b5ae187c")
+	)
+	(gr_line
+		(start 175.26 92.71)
+		(end 175.26 115.57)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Mask")
+		(uuid "c18cc111-60d8-4a7c-882a-239812bb0a20")
+	)
+	(gr_line
+		(start 175.26 76.2)
+		(end 195.58 76.2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Mask")
+		(uuid "f73c7f3b-2ba3-42a9-843c-c523b7f58697")
 	)
 	(gr_line
 		(start 184.15 119.38)
@@ -7322,46 +7102,6 @@
 		(layer "F.SilkS")
 		(uuid "f74a0c9c-ad63-4a13-82d0-653958a780df")
 	)
-	(gr_line
-		(start 175.26 92.71)
-		(end 195.58 92.71)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.Mask")
-		(uuid "aefc1d56-c67a-4103-8971-d4b9e0e818e0")
-	)
-	(gr_line
-		(start 175.26 49.53)
-		(end 175.26 76.2)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.Mask")
-		(uuid "b4893d0b-457b-4f57-9ed0-1c78b5ae187c")
-	)
-	(gr_line
-		(start 175.26 92.71)
-		(end 175.26 115.57)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.Mask")
-		(uuid "c18cc111-60d8-4a7c-882a-239812bb0a20")
-	)
-	(gr_line
-		(start 175.26 76.2)
-		(end 195.58 76.2)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.Mask")
-		(uuid "f73c7f3b-2ba3-42a9-843c-c523b7f58697")
-	)
 	(gr_rect
 		(start 95.25 41.91)
 		(end 207.01 120.65)
@@ -7369,9 +7109,33 @@
 			(width 0.05)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "446199c3-375b-4252-8e79-c6c81095944a")
+	)
+	(gr_text "FP"
+		(at 176.53 74.93 0)
+		(layer "F.Mask")
+		(uuid "1e8959bd-c66d-4ac6-83e6-73cea3ea2ea3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "TIC"
+		(at 176.53 95.25 0)
+		(layer "F.Mask")
+		(uuid "ebe6966f-10c1-421a-851a-989ecbd71167")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
 	)
 	(gr_text "FP"
 		(at 196.85 53.34 0)
@@ -7419,30 +7183,6 @@
 				(thickness 0.1)
 			)
 			(justify left)
-		)
-	)
-	(gr_text "FP"
-		(at 176.53 74.93 0)
-		(layer "F.Mask")
-		(uuid "1e8959bd-c66d-4ac6-83e6-73cea3ea2ea3")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
-		)
-	)
-	(gr_text "TIC"
-		(at 176.53 95.25 0)
-		(layer "F.Mask")
-		(uuid "ebe6966f-10c1-421a-851a-989ecbd71167")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
 		)
 	)
 	(segment
@@ -8149,4 +7889,5 @@
 		(net 46)
 		(uuid "c8cab2d7-e00e-4d91-8145-638fe1f7e65a")
 	)
+	(embedded_fonts no)
 )

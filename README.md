@@ -7,9 +7,9 @@ L'objectif est de pouvoir accéder au status du délestage ainsi qu'à la possib
 
 ## Le contexte
 
-Le logement est en tout électrique
-Le contrat EDF est en offre tempo
-En général, hors télétravail, l'appartement est vide dans la journée
+Le logement est en tout électrique.
+Le contrat EDF est en offre Tempo.
+En général, hors télétravail, l'appartement est vide dans la journée.
 L'environnement informatique est orienté Apple (mac, iPhone, appleTV)
 
 ## Rappel du besoin
@@ -19,11 +19,11 @@ Le besoin est de délester le chauffage (le basculer en hors-gel) automatiquemen
 - en cas de surconsommation
 
 A la demande, il faut pouvoir annuler le délestage en HPJW (mais pas en HPJR)
-Cette annulation du délestage doit pouvoir se faire même si on se trouve hors de la maison
+Cette annulation du délestage doit pouvoir se faire même si on se trouve hors de la maison.
  
 ## L'approche suivie
 
-Pra rapport au projet Linky_Tempo, l'approche suivie sera de:
+Par rapport au projet Linky_Tempo, l'approche suivie sera de:
 - remplacer l'Arduino par un ESP32
 - installer HomeSpan sur l'ESP32 pour qu'il soit vu comme un device HomeKit
 - le configurer comme un "Thermostat"
@@ -41,7 +41,7 @@ Concernant la commande (TargetHeatingCoolingState) on a:
 - COOL: pas utilisé
 - AUTO: mode automatique (délestage HPJR, HPJW et surconsommation)
 
-Le circuit a également un bouton poussoir permettant de basculer entre le mode automatique et le mode annulation du délestage
+Le circuit a également un bouton poussoir permettant de basculer entre le mode automatique et le mode annulation du délestage.
 
 Note: "Heater-Cooler" aurait peut-être pu être utilisé à la place de "Thermostat". Mais cette possibilité n'a pas été étudiée.
 
@@ -63,9 +63,8 @@ Via ce point d'accès, il est possible de:
 - définir le réseau wifi sur lequel le device doit se connecter
 - définir le setup-code homeKit du device
 
-Une fois ces informations saisies, le device va redémarrer et ce connecteur à ce
-réseau wifi. Une fois ceci effectué, la led bleue va flasher 2 fois toutes les 3 secondes
-pour indiquer qu'il n'est pas pairé dans Maison.
+Une fois ces informations saisies, le device va redémarrer et se connecter à ce
+réseau wifi. Une fois ceci effectué, la led bleue va flasher 2 fois toutes les 3 secondes pour indiquer qu'il n'est pas encore pairé dans Maison.
 
 ## Les LEDs
 
@@ -73,3 +72,16 @@ LED rouge: toujours allumée, indique que l'ESP32 est alimenté
 LED bleue:  
 - allumée fixe: le device est en fonctionnement et pairé dans Maison  
 - allumée et clignotante (2 flashs brefs toutes les 3 secondes): le device n'est pas pairé dans Maison
+LED jaune:
+- flashe à chaque fois qu'une trame Linky valide a été reçue
+- reste allumée lorsque le délestage est annulé
+
+## Limitation
+
+A l'allumage du circuit, le chauffage est initilisé en mode délestage.
+Il n'est pas possible de désactiver ce délestage et commencer à chauffer.
+Il faut attendre quelques (4, cf TEMPS_DELESTAGE) minutes.
+
+## Quelques informations techniques
+
+Utiliser Arduino IDE pour builder le code et l'uploader sur l'ESP32
